@@ -1,0 +1,8 @@
+Package: com.pixel.strike3d
+Name: PixelStrike3D
+Depends: mobilesubstrate
+Version: 1.0
+Architecture: iphoneos-arm64
+Description: PixelStrike3D ESP + Unity Dumper (dump txt to Documents)
+Maintainer: DL
+Author: DL

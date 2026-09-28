@@ -1,0 +1,17 @@
+# Theos build artifacts
+.theos/
+packages/
+*.deb
+*.dylib
+*.o
+
+# Generated dumps (regenerate with in-game DUMP buttons)
+PixelStrike3D_dump.txt
+PixelStrike3D_bones.txt
+
+# macOS / editors
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
