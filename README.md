@@ -1,6 +1,6 @@
-# Hide Online Unity ESP - IL2CPP
+# PixelStrike3D Unity ESP - IL2CPP
 
-iOS ESP (Extra Sensory Perception) mod for Hide Online Unity game using IL2CPP hooking technology.
+iOS tweak for **PixelStrike3D** (`com.pixellabs.pixelstrike3d`) — Unity IL2CPP game. ESP overlay, skeleton mapped from the game's real bone names, VisCheck, IL2CPP metadata dumper and bone logger.
 
 ![iOS](https://img.shields.io/badge/iOS-14.0+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -16,123 +16,97 @@ This project is for **educational purposes only**. Use responsibly and at your o
 
 ## 📋 Features
 
-- **ESP Line** - Draw lines pointing to players
-- **ESP 3D Box** - Draw 3D boxes around players
-- **ESP Distance** - Display distance to players
-- **Draw All Players** - Show ESP for all players (Hunter & Prop)
-- **Modern ImGui Menu** - Easy-to-use interface
-- **Rootless Support** - Compatible with rootless jailbreaks
+### ESP Tab
+- **ESP Line** - Lines pointing to players (Top / Center / Bottom)
+- **Corner Box** - Corner boxes around players
+- **ESP Skeleton** - Skeleton drawn from the real bone rig (`floor`, `body_0`, `head`, `l_arm`, `l_leg`, `Feet_Left`, …)
+- **ESP Health** - PC-style vertical health bar
+- **ESP Name** - Player name (compact text, no background)
+- **ESP Distance** - Distance in meters under the name
+- **VisCheck** - Green = visible, Red = behind wall
+- **Draw All** - Show teammates as well as enemies
+
+### Dumper / Bone Logger
+- **IL2CPP Dump** - Dumps classes, fields and methods to `Documents/PixelStrike3D_dump.txt`
+- **Dump Bones** - Logs the live bone transforms of enemies to `Documents/PixelStrike3D_bones.txt` (used to map the exact rig)
+
+### Other Tabs
+- **Aim** - Aimbot / Silent Aim / No Spread / Prediction settings, FOV, smooth, target bone
+- **Memory** - Speed Hack, Teleport, Unlimited Ammo, Fast Bullet, Fly
+- **Info** - Build info
 
 ## 🎮 Supported Game
 
-- **Hide Online** (`com.hitrock.hideonline`)
+- **PixelStrike3D** (`com.pixellabs.pixelstrike3d`)
 - Unity IL2CPP based game
+- Package ID: `com.pixel.strike3d`
 
 ## 📦 Requirements
 
 - iOS 14.0+
 - Jailbroken device (rootless compatible)
 - Theos development environment
-- Hide Online game installed
+- PixelStrike3D installed
 
 ## 🛠️ Building
 
 1. Install [Theos](https://theos.dev/)
 2. Clone this repository:
 ```bash
-git clone https://github.com/x2niosvn/Hide-Online-Unity-ESP-il2cpp.git
-cd Hide-Online-Unity-ESP-il2cpp
+git clone https://github.com/dungleioshax-droid/PixelStrike3D.git
+cd PixelStrike3D
 ```
 
-3. Configure your device IP in `Makefile` (optional):
-```makefile
-THEOS_DEVICE_IP = YOUR_DEVICE_IP
-```
-
-4. Build and install:
+3. Build:
 ```bash
-make package install
+make package
 ```
+
+4. Output: `packages/com.pixel.strike3d_1.0_iphoneos-arm64.deb` — install with your favourite package manager (Sileo/Zebra) or `make package install` (set `THEOS_DEVICE_IP` in `Makefile` first).
 
 ## ⚙️ Configuration
 
-Edit `ESPConfig.h` to customize ESP settings:
+Edit `ESPConfig.h`:
 
 ```cpp
-// Player classes
-#define PLAYER_CLASS_NAME_HUNTER "Hunter"
-#define PLAYER_CLASS_NAME_PROP "Prop"
+// Player class
+#define PLAYER_CLASS_NAME "Health"
 #define PLAYER_ASSEMBLY_NAME "Assembly-CSharp.dll"
 
-// ESP distances
-#define ESP_MAX_DISTANCE 100.0f
-
-// ESP colors (RGBA)
-#define ESP_LINE_COLOR_R 255
-#define ESP_LINE_COLOR_G 0
-#define ESP_LINE_COLOR_B 0
-#define ESP_LINE_COLOR_A 255
+// ESP max distance
+#define ESP_MAX_DISTANCE 300.0f
 ```
-
-## 📱 Usage
-
-1. Install the tweak on your jailbroken device
-2. Launch Hide Online game
-3. The ESP menu will appear automatically
-4. Enable ESP features from the menu
-5. Customize settings as needed
-
-## 🎯 Menu Controls
-
-- **ESP Tab**: Enable/disable ESP features
-  - ESP Enable: Master switch for all ESP features
-  - ESP Line: Draw lines to players
-  - ESP Box: Draw 3D boxes around players
-  - ESP Distance: Show distance to players
-  - Draw All Players: Include all players (not just enemies)
 
 ## 🏗️ Project Structure
 
 ```
-Hide-Online-Unity-ESP-il2cpp/
-├── Esp/              # ESP implementation files
-├── IL2CPP/           # IL2CPP hooking utilities
-├── IMGUI/            # ImGui library
+PixelStrike3D/
+├── Esp/              # Menu / loader (ImGuiLoad, drag view)
+├── IL2CPP/           # IL2CPP hooking utils, vectors, ESP hooks, Dumper
+├── IMGUI/            # ImGui + IL2CPP bridge
 ├── Init/             # Initialization code
-├── ESPConfig.h       # Configuration file
-├── ImGuiDrawView.mm  # Main drawing view
-└── Makefile          # Build configuration
+├── ESPConfig.h       # ESP configuration
+├── ImGuiDrawView.mm  # Main ESP rendering + menu
+├── Makefile          # Theos build (rootless, arm64)
+├── Pixel.plist       # Bundle filter (com.pixellabs.pixelstrike3d)
+└── control           # Package metadata (com.pixel.strike3d)
 ```
 
 ## 🙏 Credits
 
-- **Author**: [x2niosvn](https://github.com/x2niosvn) (@x2nios)
-- **Base Project**: [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) by [xS3Cx](https://github.com/xS3Cx)
+- **Base framework**: [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) by [xS3Cx](https://github.com/xS3Cx)
 - **ImGui**: [Dear ImGui](https://github.com/ocornut/imgui)
 - **IL2CPP**: Unity IL2CPP runtime
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-- **Telegram**: [@x2nios](https://t.me/x2nios)
-- **GitHub**: [@x2niosvn](https://github.com/x2niosvn)
-
-## 🔗 Related Projects
-
-- [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) - Base ESP framework for Unity IL2CPP games
+MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Note**: This project is based on the excellent work by xS3Cx. Please support the original project!
+# PixelStrike3D Unity ESP - IL2CPP (Tiếng Việt)
 
----
-
-# Hide Online Unity ESP - IL2CPP (Tiếng Việt)
-
-Mod ESP (Extra Sensory Perception) cho game Hide Online Unity trên iOS sử dụng công nghệ hook IL2CPP.
+Tweak iOS cho game **PixelStrike3D** (`com.pixellabs.pixelstrike3d`) — game Unity IL2CPP. Vẽ ESP, skeleton theo đúng tên xương thật của game, VisCheck, dump metadata IL2CPP và log xương.
 
 ## 📸 Xem Trước
 
@@ -140,119 +114,92 @@ Mod ESP (Extra Sensory Perception) cho game Hide Online Unity trên iOS sử d�
 
 ## ⚠️ Lưu Ý
 
-Dự án này chỉ dành cho **mục đích giáo dục**. Sử dụng có trách nhiệm và tự chịu rủi ro. Các nhà phát triển không chịu trách nhiệm về bất kỳ hậu quả nào phát sinh từ việc sử dụng phần mềm này.
+Dự án chỉ dùng cho **mục đích học tập**. Tự chịu trách nhiệm khi sử dụng.
 
 ## 📋 Tính Năng
 
-- **ESP Line** - Vẽ đường chỉ về phía người chơi
-- **ESP 3D Box** - Vẽ hộp 3D xung quanh người chơi
-- **ESP Distance** - Hiển thị khoảng cách đến người chơi
-- **Draw All Players** - Hiển thị ESP cho tất cả người chơi (Hunter & Prop)
-- **Menu ImGui Hiện Đại** - Giao diện dễ sử dụng
-- **Hỗ Trợ Rootless** - Tương thích với jailbreak rootless
+### Tab ESP
+- **ESP Line** - Vẽ đường tới người chơi (Trên / Giữa / Dưới)
+- **Corner Box** - Khung góc quanh người chơi
+- **ESP Skeleton** - Xương vẽ từ rig thật (`floor`, `body_0`, `head`, `l_arm`, `l_leg`, `Feet_Left`, …)
+- **ESP Health** - Thanh máu dọc kiểu PC
+- **ESP Name** - Tên người chơi (chữ gọn, không nền)
+- **ESP Distance** - Khoảng cách (mét) dưới tên
+- **VisCheck** - Xanh lá = nhìn thấy, Đỏ = sau tường
+- **Draw All** - Hiện cả đồng đội lẫn địch
+
+### Dump / Log Xương
+- **IL2CPP Dump** - Xuất class/field/method ra `Documents/PixelStrike3D_dump.txt`
+- **Dump Bones** - Ghi transform xương thật của địch ra `Documents/PixelStrike3D_bones.txt` (dùng để map rig chính xác)
+
+### Các Tab Khác
+- **Aim** - Cài đặt Aimbot / Silent Aim / No Spread / Prediction, FOV, độ mượt, xương mục tiêu
+- **Memory** - Speed Hack, Teleport, Unlimited Ammo, Fast Bullet, Fly
+- **Info** - Thông tin bản build
 
 ## 🎮 Game Hỗ Trợ
 
-- **Hide Online** (`com.hitrock.hideonline`)
+- **PixelStrike3D** (`com.pixellabs.pixelstrike3d`)
 - Game Unity IL2CPP
+- Package ID: `com.pixel.strike3d`
 
 ## 📦 Yêu Cầu
 
 - iOS 14.0+
-- Thiết bị đã jailbreak (tương thích rootless)
-- Môi trường phát triển Theos
-- Đã cài đặt game Hide Online
+- Máy đã jailbreak (tương thích rootless)
+- Môi trường Theos
+- Đã cài PixelStrike3D
 
 ## 🛠️ Cách Build
 
-1. Cài đặt [Theos](https://theos.dev/)
-2. Clone repository này:
+1. Cài [Theos](https://theos.dev/)
+2. Clone repo:
 ```bash
-git clone https://github.com/x2niosvn/Hide-Online-Unity-ESP-il2cpp.git
-cd Hide-Online-Unity-ESP-il2cpp
+git clone https://github.com/dungleioshax-droid/PixelStrike3D.git
+cd PixelStrike3D
 ```
 
-3. Cấu hình IP thiết bị trong `Makefile` (tùy chọn):
-```makefile
-THEOS_DEVICE_IP = IP_THIET_BI_CUA_BAN
+3. Build:
+```bash
+make package
 ```
 
-4. Build và cài đặt:
-```bash
-make package install
-```
+4. File deb ra ở `packages/com.pixel.strike3d_1.0_iphoneos-arm64.deb` — cài bằng Sileo/Zebra hoặc `make package install` (cấu hình `THEOS_DEVICE_IP` trong `Makefile` trước).
 
 ## ⚙️ Cấu Hình
 
-Chỉnh sửa `ESPConfig.h` để tùy chỉnh cài đặt ESP:
+Sửa `ESPConfig.h`:
 
 ```cpp
-// Lớp người chơi
-#define PLAYER_CLASS_NAME_HUNTER "Hunter"
-#define PLAYER_CLASS_NAME_PROP "Prop"
+// Class người chơi
+#define PLAYER_CLASS_NAME "Health"
 #define PLAYER_ASSEMBLY_NAME "Assembly-CSharp.dll"
 
-// Khoảng cách ESP
-#define ESP_MAX_DISTANCE 100.0f
-
-// Màu sắc ESP (RGBA)
-#define ESP_LINE_COLOR_R 255
-#define ESP_LINE_COLOR_G 0
-#define ESP_LINE_COLOR_B 0
-#define ESP_LINE_COLOR_A 255
+// Khoảng cách ESP tối đa
+#define ESP_MAX_DISTANCE 300.0f
 ```
-
-## 📱 Cách Sử Dụng
-
-1. Cài đặt tweak trên thiết bị đã jailbreak
-2. Khởi động game Hide Online
-3. Menu ESP sẽ xuất hiện tự động
-4. Bật các tính năng ESP từ menu
-5. Tùy chỉnh cài đặt theo nhu cầu
-
-## 🎯 Điều Khiển Menu
-
-- **Tab ESP**: Bật/tắt các tính năng ESP
-  - ESP Enable: Công tắc chính cho tất cả tính năng ESP
-  - ESP Line: Vẽ đường đến người chơi
-  - ESP Box: Vẽ hộp 3D xung quanh người chơi
-  - ESP Distance: Hiển thị khoảng cách đến người chơi
-  - Draw All Players: Bao gồm tất cả người chơi (không chỉ địch)
 
 ## 🏗️ Cấu Trúc Dự Án
 
 ```
-Hide-Online-Unity-ESP-il2cpp/
-├── Esp/              # Các file triển khai ESP
-├── IL2CPP/           # Tiện ích hook IL2CPP
-├── IMGUI/            # Thư viện ImGui
+PixelStrike3D/
+├── Esp/              # Menu / loader (ImGuiLoad, drag view)
+├── IL2CPP/           # Tiện ích hook IL2CPP, vector, hook ESP, Dumper
+├── IMGUI/            # ImGui + cầu nối IL2CPP
 ├── Init/             # Code khởi tạo
 ├── ESPConfig.h       # File cấu hình
-├── ImGuiDrawView.mm  # View vẽ chính
-└── Makefile          # Cấu hình build
+├── ImGuiDrawView.mm  # Vẽ ESP chính + menu
+├── Makefile          # Build Theos (rootless, arm64)
+├── Pixel.plist       # Lọc bundle (com.pixellabs.pixelstrike3d)
+└── control           # Metadata gói (com.pixel.strike3d)
 ```
 
 ## 🙏 Ghi Công
 
-- **Tác Giả**: [x2niosvn](https://github.com/x2niosvn) (@x2nios)
-- **Dự Án Gốc**: [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) bởi [xS3Cx](https://github.com/xS3Cx)
+- **Framework gốc**: [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) bởi [xS3Cx](https://github.com/xS3Cx)
 - **ImGui**: [Dear ImGui](https://github.com/ocornut/imgui)
 - **IL2CPP**: Unity IL2CPP runtime
 
 ## 📄 Giấy Phép
 
-Dự án này được cấp phép theo MIT License - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
-
-## 📞 Liên Hệ
-
-- **Telegram**: [@x2nios](https://t.me/x2nios)
-- **GitHub**: [@x2niosvn](https://github.com/x2niosvn)
-
-## 🔗 Dự Án Liên Quan
-
-- [IOS-ESP-AutoUpdate](https://github.com/xS3Cx/IOS-ESP-AutoUpdate) - Framework ESP cơ sở cho game Unity IL2CPP
-
----
-
-**Lưu ý**: Dự án này dựa trên công việc tuyệt vời của xS3Cx. Vui lòng ủng hộ dự án gốc!
-
+MIT License - xem file [LICENSE](LICENSE).
