@@ -8,7 +8,7 @@ iOS tweak for **PixelStrike3D** (`com.pixellabs.pixelstrike3d`) — Unity IL2CPP
 
 ## 📸 Preview
 
-![Preview](preview.jpg)
+![Preview](preview.jpg?v=2)
 
 ## ⚠️ Disclaimer
 
@@ -110,7 +110,7 @@ Tweak iOS cho game **PixelStrike3D** (`com.pixellabs.pixelstrike3d`) — game Un
 
 ## 📸 Xem Trước
 
-![Preview](preview.jpg)
+![Preview](preview.jpg?v=2)
 
 ## ⚠️ Lưu Ý
 
